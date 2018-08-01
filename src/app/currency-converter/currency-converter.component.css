@@ -1,0 +1,101 @@
+.converter {
+    margin-top: 40px;
+    margin-bottom: 150px;
+    width: 100%;
+}
+
+.converter-form {
+    width: 100%;
+}
+
+.converter-container {
+    min-height: 350px;
+    position: relative;
+}
+
+.result-container {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    min-height: 100px;
+}
+
+.submit-btn {
+    position: absolute;
+    bottom: 10px;
+}
+
+.mat-from, .mat-to {
+    width: 100%;
+}
+
+.amount-form {
+    display: inline-block;
+    text-align: center;
+    width: 27%;
+    margin: 10px 30px;
+}
+
+.convert-from, .convert-to {
+    display: inline-block;
+    width: 400px;
+    height: 100px;
+    margin: 10px 30px;
+}
+
+/*  */
+
+.result {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.amount {
+    text-align: right;
+}
+
+small.converter-name {
+    float: right;
+}
+
+span.converter-id {
+    color: #d251ec;
+}
+
+input.amount::-webkit-outer-spin-button,
+input.amount::-webkit-inner-spin-button {
+    display: none;
+}
+
+input[matInput] {
+    text-transform: uppercase;
+}
+
+.submit-btn {
+    text-align: center;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    
+    .convert-from, .convert-to {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+
+    .convert-from, .convert-to {
+        width: 90%;
+    }
+
+    .amount-form {
+        display: block;
+        width: 90%;
+    }
+
+    .convert-from, .convert-to, .amount-form  {
+        display: block;
+    }
+}

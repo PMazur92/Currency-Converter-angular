@@ -1,0 +1,48 @@
+<div class="converter">
+
+  <div class="converter-container" *ngIf="currencies">
+    <form [formGroup]="converterForm" class="converter-form" (submit)="onSubmit(converterForm)">
+      <div class="convert-from">
+        <h3>{{ selectedCurrencyFrom?selectedCurrencyFrom.currencyName:'Choose Currency:' }}</h3>
+        <mat-form-field class="mat-from">
+          <input matInput placeholder="FROM" aria-label="CurrencyFrom" [matAutocomplete]="autoFrom" formControlName="convertFrom" (keyup)="selectFromChange()">
+          <mat-autocomplete autoActiveFirstOption #autoFrom="matAutocomplete">
+            <mat-option *ngFor="let curr of filteredCurrenciesFrom" [value]="curr.id" (onSelectionChange)="selectCurrencyFrom($event)">
+              <span class="converter-id">{{ curr.id }}</span>
+              <small class="converter-name">{{ curr.currencyName }}</small>
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="convertFrom.invalid">{{ getErrorMessage(convertFrom) }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="amount-form">
+        <mat-form-field>
+          <input matInput placeholder="Amount" type="number" class="amount" formControlName="amount">
+          <span matPrefix *ngIf="selectedCurrencyFrom">{{ selectedCurrencyFrom.currencySymbol }}</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+      </div>
+
+      <div class="convert-to">
+        <h3>{{ selectedCurrencyTo?selectedCurrencyTo.currencyName:'Choose Currency:' }}</h3>
+        <mat-form-field class="mat-to">
+          <input matInput placeholder="TO" aria-label="CurrencyTo" [matAutocomplete]="autoTo" formControlName="convertTo">
+          <mat-autocomplete autoActiveFirstOption #autoTo="matAutocomplete">
+            <mat-option *ngFor="let curr of filteredCurrenciesTo" [value]="curr.id" (onSelectionChange)="selectCurrencyTo($event)" (keyup)="selectToChange()">
+              <span class="converter-id">{{ curr.id }}</span>
+              <small class="converter-name">{{ curr.currencyName }}</small>
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="convertTo.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="submit-btn">
+        <button type="submit" mat-button color="primary" [disabled]="!converterForm.valid">Convert</button>
+      </div>
+    </form>
+    <div class="result-container" *ngIf="result">
+      <p>{{ result.val }} {{ selectedCurrencyTo?.currencySymbol }}</p>
+    </div>
+
+  </div>
